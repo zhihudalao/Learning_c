@@ -1,0 +1,5 @@
+s:
+	gcc -o s server.c usrLink.c protocol.c fileOpe.c -pthread
+
+clean:
+	rm -rf s

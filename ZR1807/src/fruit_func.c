@@ -1,0 +1,63 @@
+#include "fruit_func.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+/*
+	功能：添加一个水果信息到链表中
+	参数：head 链表头节点
+	返回值：0 成功 1 失败
+*/
+int insert_fruit(Fruit* head)
+{
+	if(NULL == head) return 1;
+	
+	Fruit* newNode = malloc(sizeof(Fruit));
+	if(newNode == NULL) return 1;
+	memset(newNode, 0, sizeof(Fruit));
+	
+	struct fruit f;
+	memset(&f, 0, sizeof(struct fruit));
+	//输入
+	printf("请输入水果的名字: ");
+	scanf("%s", f.name);
+	
+	//水果已经存在，添加失败
+	if(find_fruit_by_name(head, f.name) == 0){
+		printf("你添加的水果已经存在\n");
+		return 1;
+	}
+	
+	
+	printf("请输入水果的价格: ");
+	scanf("%lf", &f.price);
+	
+	newNode->fruit = f;
+	
+	//添加
+	return append_link(head, newNode);
+}
+
+/*
+	功能：删除一个水果从链表中
+	参数：head 链表头节点
+	返回值：0 成功 1 失败
+*/
+int delete_fruit(Fruit* head)
+{
+	if(NULL == head) return 1;
+	
+	//输入水果名
+	char name[20] = {'\0'};
+	printf("请输入要删除的水果名: ");
+	scanf("%s", name);	
+	if(find_fruit_by_name(head, name) == 1){
+		printf("没有这个水果的信息\n");
+		return 1;
+	}
+	return remove_node(head, name);
+}
+
+
+

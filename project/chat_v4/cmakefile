@@ -1,0 +1,5 @@
+c:
+	gcc -o c cmain.c client.c protocol.c -pthread
+
+clean:
+	rm -rf c

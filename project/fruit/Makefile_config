@@ -1,0 +1,14 @@
+bin/fruit: obj/view.o obj/fruit_func.o obj/FruitLink.o obj/controller.o src/main.c
+	gcc obj/view.o obj/fruit_func.o obj/controller.o obj/FruitLink.o src/main.c -o bin/fruit -g -Wall -Iinclude
+obj/fruit_func.o:src/fruit_func.c
+	gcc -c src/fruit_func.c -o obj/fruit_func.o -g -Wall -Iinclude
+obj/FruitLink.o:src/FruitLink.c
+	gcc -c src/FruitLink.c -o obj/FruitLink.o -g -Wall -Iinclude
+obj/view.o:src/view.c
+	gcc -c src/view.c -o obj/view.o -g -Wall -Iinclude
+obj/controller.o:src/controller.c
+	gcc -c src/controller.c -o obj/controller.o -g -Wall -Iinclude
+
+clean:
+	rm obj/*.o
+	rm bin/*
